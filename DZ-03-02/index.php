@@ -9,14 +9,17 @@ use src\MobileUserAuthentication;
 
 class User
 {
-    use AppUserAuthentication, MobileUserAuthentication;
+    use AppUserAuthentication, MobileUserAuthentication {
+        AppUserAuthentication::authenticate insteadof MobileUserAuthentication; // Используем authenticate из AppUserAuthentication
+        MobileUserAuthentication::authenticate as authenticateMobile;           // Даем новоый Псевдоним для метода из MobileUserAuthentication
+    }
 
     public function loginCheck(string $login, string $password): string 
     {
-        if ($this->authenticateApp($login, $password)) {
+        if ($this->authenticate($login, $password)) {// authenticate из AppUserAuthentication
             return 'Авторизован как пользователь Приложения';
 
-        } elseif ($this->authenticateMobile($login, $password)) {
+        } elseif ($this->authenticateMobile($login, $password)) {// authenticate из MobileUserAuthentication с новым псевдонимом
             return 'Авторизован как пользователь Мобильного приложения';
 
         } else {
