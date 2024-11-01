@@ -66,7 +66,7 @@ $person3 = new Person("Anna", "Ivanova", 4500);
 $person4 = new Person("Petr", "Petrov", 5000);
 
 
-// Сотрудник $person не выведется, т.к. был объявлен до объявления объекта $peopleList. Если необходимо его добавить, объяви $peopleList до $person1
+// Сотрудник $person1 не выведется, т.к. был объявлен до объявления объекта $peopleList. Если необходимо его добавить, объяви $peopleList до $person1
 
 // Выводим всех сотрудников через foreach
 foreach ($peopleList as $person) {
